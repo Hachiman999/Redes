@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Hachiman999/Redes#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "nodemon": "^2.0.3"
+    "express": "4.17.1",
+    "nodemon": "2.0.3"
   }
 }
