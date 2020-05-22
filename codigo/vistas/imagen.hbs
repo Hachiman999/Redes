@@ -1,0 +1,59 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h2>{{img.titulo}}</h2>
+        <button class="btn btn-danger" id="btn-delete" data-id="{{soloId}}">
+            <i class="fa fa-times "></i>  Borrar
+        </button>
+    </div>
+    <div class="card-body">
+        <p>{{img.descripcion}}</p>
+        <div class="text-center">
+            <img src="/publico/subido/{{img.nombreFile}}" alt="" class="img-fluid">
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between align-items-center">
+        <button class="btn btn-success" id ="btn-meGusta" data-id="{{img.nombreFile}}">
+            <i class="fas fa-thumbs-up"></i> Me gusta
+        </button>
+        <p>
+            <span class="likes-count">{{img.meGusta}}</span>
+            <i class="fas fa-heart"></i>
+        </p>
+         <p>
+                <i class="fas fa-eye"></i> {{img.vistas}}
+        </p>
+        <p>
+            <i class="far fa-clock"></i> {{tiempoMin img.fechaSubido}}
+        </p>
+    </div>
+</div>
+
+<div class="card mt-2">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3>Comentarios</h3>
+        <button class="btn btn-info" id="btn-toggle-comment">
+            <i class="fa fa-comment-o"></i> Comentar
+        </button>
+    </div>
+    <div class="card-body">
+        <blockquote>
+            <form action="/imagenes/{{img.soloId}}/comentario" method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" name="nombre" placeholder="Nombre" id="">                
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" name="correo" placeholder="Correo electronico" id="">                
+            </div>
+            <div class="form-group">
+               <textarea name="comentario" rows="2" class="form-control" placeholder="Tu comentario"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" id="btn.comment">
+                    <i class="fa fa-comment"></i> Enviar
+                </button>
+            </div>
+            </form>
+        </blockquote>
+    </div>
+
+</div>

@@ -1,28 +1,25 @@
 {
-  "name": "Redes",
+  "name": "Imagenes",
   "version": "1.0.0",
-  "description": "Laboratorio 3 creación de servidor web con función ftp",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Hachiman999/Redes.git"
+    "start": "nodemon ./codigo/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Hachiman999/Redes/issues"
-  },
-  "homepage": "https://github.com/Hachiman999/Redes#readme",
   "dependencies": {
-    "ejs": "3.1.2",
-    "express": "4.17.1",
-    "multer": "1.4.2",
-    "nodemon": "2.0.3",
-    "uuid": "^8.0.0"
+    "errorhandler": "^1.5.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "fs-extra": "^9.0.0",
+    "handlebars": "^4.5.3",
+    "md5": "^2.2.1",
+    "moment": "^2.26.0",
+    "mongoose": "^5.9.15",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.4"
   }
 }

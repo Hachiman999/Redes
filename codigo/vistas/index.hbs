@@ -1,0 +1,54 @@
+<div class="card">
+    <div class="card-header bg-dark">
+        <h3 class="card-title text-white">
+            <i class="far fa-image"></i> Cargar imagen
+
+        </h3>
+    </div>
+    <div class="card-body">
+        <form action="/imagenes" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="input group">
+                    <div class="custom-file">
+                        <input type="file" name="imagen"  class="custom-file-input" id="inputGroup"
+                            aria-describedby="inputGroupFileAddon" title="Examinar" data-buttonText="Buscar" required>
+                        <label class="custom-file-label" for="inputGroupFile">Elegir imagen</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" name="titulo" class="form-control" placeholder="Titulo de la imagen" required>
+
+            </div>
+            <div class="form-group">
+                <textarea name="descripcion" id="" rows="2" class="form-control" placeholder="Descripcion de la imagen"
+                    required></textarea>
+            </div>
+            <div class="form-group">
+
+                <button class="btn btn-success">
+                    <i class="fa fa-upload"></i> Subir imagen
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div class="card mt-2">
+    <div class="card-header bg-dark text-white">
+        <h3><i class="far fa-images"></i>Recientes</h3>
+    </div>
+    <div class="card body">
+        <div class="row">
+            {{#each imagenes}}
+            <div class="col-md-4">
+                
+                <a href="/imagenes/{{soloId}}">
+                    <img class="w-100 h-100 img-thumbnail" src="/publico/subido/{{nombreFile}}" alt=""></a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+

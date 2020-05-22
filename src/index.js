@@ -13,7 +13,7 @@ const app = express();//iniciamos el servidor
 
 
 
-const http = require('https').Server(app);//aplicamos el protocolo http
+const http = require('http').Server(app);//aplicamos el protocolo http
 
 //configuracion de uso para archivos estaticos
 app.use(express.static(__dirname+'public'));
