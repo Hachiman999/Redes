@@ -1,0 +1,96 @@
+nano /etc/network/interfaces
+********
+apt-get install bind9
+**
+service bind9 status
+dir /etc/bind/
+nano /etc/network/interfaces
+----------------------------------------
+
+auto enp0s3
+iface enp0s3 inet static
+	address 192.168.222.2
+	netmask 225.225.255.0
+	gateway 192.168.222.1
+	dns-nameservers 192.168.222.2
+	dns-search redes.uao
+
+-----------------------------------------------
+service networking reload
+ifconfig
+ip ad flush enp0s3
+ifdow enp0s3
+ifup enp0s3
+ifconfig
+cat /etc/resolv.conf
+resolvconf -u
+::::::::::::::
+Cambiar a red interna 
+-> red ->preferencias de red -> conectado a red interna
+::::::::::::::
+reboot
+
+nano /etc/nsswitch.conf
+-------------------
+
+hosts:		 dns files mdns4_minimal [NOTFOUND=return]
+
+---------------------
+dir /etc/bind/
+nano /etc/bind/named.conf.local
+----------------
+//zona directa
+zone "redes.uao"{
+	type master;
+	file "/etc/bind/db.redes.uao";
+};
+//zona indirecta
+zone "222.168.192.in-addr.arpa"{
+	type master;
+	file "/etc/bind/db.222.168.192";	
+};
+----------------------------
+cp /etc/bind/db.local /etc/bind/db.redes.uao
+nano /etc/bind/db.redes.uao
+--------------
+$TTL	604800
+@ 	IN	SOA	servidor.redes.uao.root.redes.uao. (
+				2	; Serial
+			   604800	; Refresh
+			    86400	; Retry
+			  2419200	; Expire
+   			   604800 )	; Negative Cache TTL
+;
+;
+			   IN	  NS	servidor.redes.uao.
+servidor		   IN	  A	192.168.222.2
+cliente1		   IN	  A	192.168.222.51
+router			   IN	  A	192.168.222.1
+cliente2.redes.uao	   IN	  A	192.168.222.52
+server			   IN	  CNAME	servidor
+-------------------
+cp /etc/bind/db.redes.uao /etc/bind/db.222.168.192
+-------------------
+$TTL	604800
+@ 	IN	SOA	servidor.redes.uao.root.redes.uao. (
+				2	; Serial
+			   604800	; Refresh
+			    86400	; Retry
+			  2419200	; Expire
+   			   604800 )	; Negative Cache TTL
+;
+;
+			   IN	  NS	servidor.redes.uao.
+2			   IN	  NS	servidor.redes.uao.
+51			   IN	  NS	cliente1.redes.uao
+1			   IN	  NS	router.redes.uao
+52			   IN	  NS	cliente2.redes.uao
+
+------------
+named-checkconf /etc/bind/named.conf.local
+named-checkzone redes.uao /etc/bind/db.redes.uao
+named-checkzone 222.168.192.in-addr.arpa /etc/bind/db.db.222.168.192
+service bind9 restart
+service bind9 status
+ping -c 4 servidor
+
